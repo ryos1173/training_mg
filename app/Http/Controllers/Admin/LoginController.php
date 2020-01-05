@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -26,31 +26,38 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/home';  //ログイン後のリダイレクト先
+    
+    public function __construct()
+    {
+        $this->middleware('guest:admin')->except('logout');
+    }
+    
+     // ログイン画面
+    public function showLoginForm()
+    {
+        return view('admin.login'); //管理者ログインページのテンプレート
+    }
+    protected function guard()
+    {
+        return \Auth::guard('admin'); //管理者認証のguardを指定
+    }
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        \Auth::guard('admin')->logout();
+        return redirect('/admin/login');  // ログアウト後のリダイレクト先
+    }
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest:user')->except('logout');
-    }
-    
-    public function showLoginForm()
-    {
-        return view('auth.login');
-    }
 
-    protected function guard()
-    {
-        return \Auth::guard('user');
-    }
-
-    public function logout(Request $request)
-    {
-        \Auth::guard('user')->logout();
-        return redirect('/login');
-    }
 }
