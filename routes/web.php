@@ -35,6 +35,8 @@ Route::group(['prefix' => 'user'], function() {
 });
 
 Route::group(['prefix' => 'user'], function() {
+    Route::get('client/create', 'User\ClientController@add');
+    Route::post('client/create', 'User\ClientController@create');
     Route::get('client/edit', 'User\ClientController@edit');
     Route::post('client/update', 'User\ClientController@update');
 });

@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.newclient')
 
 
 @section('title', '新規クライアントの作成')
