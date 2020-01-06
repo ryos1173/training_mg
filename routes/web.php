@@ -29,12 +29,12 @@ Route::group(['prefix' => 'admin'], function(){
     Route::post('logout', 'Admin\LoginController@logout')->name('admin.logout');
 });
 
-Route::group(['prefix' => 'user'], function() {
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('newclient/create', 'User\NewClientController@add');
     Route::post('newclient/create', 'User\NewClientController@create');
 });
 
-Route::group(['prefix' => 'user'], function() {
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::get('client/create', 'User\ClientController@add');
     Route::post('client/create', 'User\ClientController@create');
     Route::get('client/edit', 'User\ClientController@edit');
