@@ -18,7 +18,6 @@ class CreateTrainingsTable extends Migration
             $table->datetime('datetime');
             $table->string('weight');
             $table->string('bfp');
-            $table->string('menu');
             $table->string('training_menu');
             $table->string('memo');
         });

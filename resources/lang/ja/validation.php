@@ -148,5 +148,7 @@ return [
         'weight' => '体重', 
         'bfp' => '体脂肪率', 
         'goal' => 'トレーニングの目的', 
+        'training_menu' => 'メニュー',
+        'memo' => 'メモ',
         ],
 ];
